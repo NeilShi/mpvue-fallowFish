@@ -34,9 +34,9 @@ export default {
     display flex
     .item
       list-style none
-      flex 1
+      flex 0.188
       display flex
-      flex-flow column nowrap 
+      flex-flow column nowrap
       align-items center
       .image
         width 1rem
