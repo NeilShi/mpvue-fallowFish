@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <ul>
-      <li class="list" v-for="(list,index_news) in news" :key="index_news"  @click="details(index_news)">
+      <a href="/pages/details/main">
+      <li class="list" v-for="(list,index_news) in news" :key="index_news">
         <div class="header">
           <img :src="list.avatar" alt="">
           <div class="info">
@@ -23,31 +24,31 @@
           <div class="kind">{{list.kind}}</div>
           <div class="star">{{list.star}}</div>
         </div>
-
       </li>
+      </a>
     </ul>
-    <div class="swiper-container" ref="swiperBottom" style="margin-bottom: 2rem">
-      <div class="swiper-wrapper swiper">
-        <div class="swiper-slide item" v-for="(item,index_recoms) in recoms" :key="index_recoms">
-          <div class="title">{{item.title}}</div>
-          <div class="info">
-            <span class="fabu">发布数{{item.members}}</span>
-            <span class="hot">昨日人气 +{{item.num}}</span>
-          </div>
-          <div class="desc">
-            <span class="gonggao">公告</span>
-            <span class="produ">{{item.produ}}</span>
-          </div>
-          <div class="imgbox border-1px">
-            <img :src="img.img" alt="" v-for="(img,index_img) in item.images" :key="index_img">
-          </div>
-          <div class="addr">
-            <p class="distance">距离你{{item.destance}}米</p>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
+    <!--<div class="swiper-container" ref="swiperBottom" style="margin-bottom: 2rem">-->
+      <!--<div class="swiper-wrapper swiper">-->
+        <!--<div class="swiper-slide item" v-for="(item,index_recoms) in recoms" :key="index_recoms">-->
+          <!--<div class="title">{{item.title}}</div>-->
+          <!--<div class="info">-->
+            <!--<span class="fabu">发布数{{item.members}}</span>-->
+            <!--<span class="hot">昨日人气 +{{item.num}}</span>-->
+          <!--</div>-->
+          <!--<div class="desc">-->
+            <!--<span class="gonggao">公告</span>-->
+            <!--<span class="produ">{{item.produ}}</span>-->
+          <!--</div>-->
+          <!--<div class="imgbox border-1px">-->
+            <!--<img :src="img.img" alt="" v-for="(img,index_img) in item.images" :key="index_img">-->
+          <!--</div>-->
+          <!--<div class="addr">-->
+            <!--<p class="distance">距离你{{item.destance}}米</p>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="swiper-pagination"></div>-->
+    <!--</div>-->
 
   </div>
 </template>
@@ -70,18 +71,7 @@ export default {
     }
   },
   created () {
-    this.$nextTick(() => {
-      // let swiperBottom = this.$refs.swiperBottom
-      // let mySwiper = new Swiper(swiperBottom, {
-      //   autoplay: 2000,
-      //   loop: true,
-      //   observer: true,
-      //   observeParents: true,
-      //   pagination: {
-      //     el: '.swiper-pagination'
-      //   }
-      // })
-    })
+    console.log('news is created')
   },
   methods: {
     details (index) {
@@ -141,6 +131,7 @@ export default {
           width 6rem
           height 6rem
       .detail
+        width 75%
         margin-top 0.2rem
         font-size 0.4rem
         font-weight 700

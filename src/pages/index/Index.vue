@@ -5,9 +5,10 @@
       </div>
       <IndexBanner :banner="banner"></IndexBanner>
       <IndexGoods :iconList="iconList"></IndexGoods>
-      <IndexTypes :typeList="typeList"></IndexTypes>
-      <SmallBanner :smBanner="smBanner"></SmallBanner>
-      <IndexNav :news="news" :nears="nears" :recoms="recoms"></IndexNav>
+      <!--<IndexTypes :typeList="typeList"></IndexTypes>-->
+      <!--<SmallBanner :smBanner="smBanner"></SmallBanner>-->
+      <!--<IndexNav :news="news" :nears="nears" :recoms="recoms"></IndexNav>-->
+      <New :news="news" :recoms="recoms"></New>
       <!--<NavButtom></NavButtom>-->
   </div>
 </template>
@@ -15,10 +16,11 @@
 <script>
 import { getIconlist, getTypelist, getSmBanner, getIndexNav, getIndexbanner } from '@/api/data'
 import IndexGoods from '@/components/indexgoods/IndexGoods'
-import IndexTypes from '@/components/indexTypes/IndexTypes'
+import New from '@/components/new/New'
+// import IndexTypes from '@/components/indexTypes/IndexTypes'
 // import NavButtom from '@/components/navbuttom/NavButtom'
-import SmallBanner from '@/components/smallbanner/SmallBanner'
-import IndexNav from '@/components/indexnav/IndexNav'
+// import SmallBanner from '@/components/smallbanner/SmallBanner'
+// import IndexNav from '@/components/indexnav/IndexNav'
 import IndexBanner from '@/components/indexbanner/IndexBanner'
 import HeaderComp from '@/components/header/header-comp'
 
@@ -28,9 +30,10 @@ export default {
     HeaderComp,
     IndexBanner,
     IndexGoods,
-    IndexTypes,
-    SmallBanner,
-    IndexNav
+    New
+    // IndexTypes,
+    // SmallBanner,
+    // IndexNav
     // NavButtom
   },
   data () {
@@ -49,7 +52,6 @@ export default {
     getIconlist().then(res => {
       if (res.statusCode === 200) {
         this.iconList = res.data.iconlist
-        console.log(this.iconList)
       }
     })
     getIndexbanner().then(res => {
@@ -59,12 +61,15 @@ export default {
         this.banner.forEach(item => {
           item.src = imgStr + item.src
         })
-        console.log(this.banner)
       }
     })
     getTypelist().then(res => {
       if (res.statusCode === 200) {
         this.typeList = res.data.typelist
+        // fix img src bug
+        this.typeList.forEach(item => {
+          item.src = imgStr + item.src
+        })
       }
     })
     getSmBanner().then(res => {
@@ -77,6 +82,12 @@ export default {
         this.news = res.data.news
         this.nears = res.data.nears
         this.recoms = res.data.recoms
+        // fix img src bug
+        this.news.forEach(item => {
+          item.avatar = imgStr + item.avatar
+          item.img = imgStr + item.img
+        })
+        console.log(this.news)
       }
     })
   }

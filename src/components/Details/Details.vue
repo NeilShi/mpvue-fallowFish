@@ -56,6 +56,11 @@ export default {
       show: true
     }
   },
+  props: {
+    news: {
+      type: Object
+    }
+  },
   methods: {
     goBack () {
       this.$router.back(-1)
@@ -106,7 +111,7 @@ export default {
       top .4rem
       width 1rem
       height 1rem
-      img 
+      img
         width .8rem
         height .8rem
     .title
@@ -209,14 +214,14 @@ export default {
       align-items center
       font-size 0.3rem
       font-weight 500
-      img 
+      img
         width 0.8rem
         height 0.8rem
     .givestar
       flex 2
       font-size 0.3rem
       font-weight 500
-      img 
+      img
         width 0.8rem
         height 0.8rem
     .buy
@@ -227,5 +232,5 @@ export default {
       text-align center
       color #ffffff
       font-size 0.4rem
-      
+
 </style>
