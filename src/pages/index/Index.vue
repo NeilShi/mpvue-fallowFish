@@ -3,18 +3,17 @@
       <div class="head" style="margin-bottom:1.5rem">
         <header-comp />
       </div>
-      <IndexBanner></IndexBanner>
+      <IndexBanner :banner="banner"></IndexBanner>
       <IndexGoods :iconList="iconList"></IndexGoods>
       <IndexTypes :typeList="typeList"></IndexTypes>
       <SmallBanner :smBanner="smBanner"></SmallBanner>
       <IndexNav :news="news" :nears="nears" :recoms="recoms"></IndexNav>
       <!--<NavButtom></NavButtom>-->
-
   </div>
 </template>
 
 <script>
-import { getIconlist, getTypelist, getSmBanner, getIndexNav } from '@/api/data'
+import { getIconlist, getTypelist, getSmBanner, getIndexNav, getIndexbanner } from '@/api/data'
 import IndexGoods from '@/components/indexgoods/IndexGoods'
 import IndexTypes from '@/components/indexTypes/IndexTypes'
 // import NavButtom from '@/components/navbuttom/NavButtom'
@@ -37,6 +36,7 @@ export default {
   data () {
     return {
       iconList: [],
+      banner: [],
       typeList: [],
       smBanner: [],
       news: [],
@@ -45,9 +45,21 @@ export default {
     }
   },
   created () {
-    getIconlist().then((res) => {
+    let imgStr = '../.'
+    getIconlist().then(res => {
       if (res.statusCode === 200) {
         this.iconList = res.data.iconlist
+        console.log(this.iconList)
+      }
+    })
+    getIndexbanner().then(res => {
+      if (res.statusCode === 200) {
+        this.banner = res.data.banner
+        // fix img src bug
+        this.banner.forEach(item => {
+          item.src = imgStr + item.src
+        })
+        console.log(this.banner)
       }
     })
     getTypelist().then(res => {
