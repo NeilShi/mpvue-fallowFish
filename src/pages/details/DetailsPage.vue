@@ -50,7 +50,7 @@
 
 <script>
   import DetailsInfo from '@/components/details/DetailsInfo'
-  import globalStore from '../../store/index'
+  // import globalStore from '../../store/index'
   export default {
     components: {
       DetailsInfo
@@ -62,7 +62,7 @@
     // },
     computed: {
       news () {
-        return globalStore.state.news
+        return this.$store.state.news
       }
     }
   }

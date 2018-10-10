@@ -137,7 +137,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../common/stylus/mixin.styl'
+@import '../../common/stylus/mixin.styl'
 .container
   margin-bottom 3rem
   background-color #f3f3f3
@@ -173,7 +173,7 @@ export default {
           display flex
           align-items center
           justify-content center
-          img 
+          img
             width 100%
             height 100%
             border-radius 50%
@@ -215,8 +215,8 @@ export default {
           font-size 0.3rem
           font-weight 400
       .on
-        border none 
-        outline none 
+        border none
+        outline none
         width 2.3rem
         height 0.93rem
         box-sizing border-box
@@ -238,7 +238,7 @@ export default {
       width 2.5rem
       height 1.2rem
       background-color #ffda44
-      outline none 
+      outline none
       border none
     .animate
       position absolute
@@ -246,12 +246,12 @@ export default {
       right 1rem
       width 5.2rem
       height 100%
-      background #fff url('../assets/images/fish.png') no-repeat
+      background #fff url('../../assets/images/fish.png') no-repeat
       background-position 100% 100%
   .list
     margin-top 0.3rem
     width 100%
-    height auto 
+    height auto
     background-color #fff
     font-size 0.4rem
     font-weight 400
@@ -265,25 +265,25 @@ export default {
       background-position .3rem .3rem
       tri-2px(#999)
       &.item1
-        background-image: url('../assets/images/book.png')
+        background-image: url('../../assets/images/book.png')
       &.item2
-        background-image: url('../assets/images/发送.png')
+        background-image: url('../../assets/images/发送.png')
       &.item3
-        background-image: url('../assets/images/我收到的.png')
+        background-image: url('../../assets/images/我收到的.png')
       &.item4
-        background-image: url('../assets/images/收到评价.png')
+        background-image: url('../../assets/images/收到评价.png')
       &.item5
-        background-image: url('../assets/images/拍卖.png')
+        background-image: url('../../assets/images/拍卖.png')
       &.item6
-        background-image: url('../assets/images/撒鱼币.png')
+        background-image: url('../../assets/images/撒鱼币.png')
       &.item7
-        background-image: url('../assets/images/设置.png')
+        background-image: url('../../assets/images/设置.png')
       &.item8
-        background-image: url('../assets/images/爱心_.png')
+        background-image: url('../../assets/images/爱心_.png')
       &.item9
-        background-image: url('../assets/images/闲鱼.png')
+        background-image: url('../../assets/images/闲鱼.png')
       &.item10
-        background-image: url('../assets/images/帮助.png')
+        background-image: url('../../assets/images/帮助.png')
       .number
         position absolute
         right 1rem
@@ -294,10 +294,10 @@ export default {
       display block
       width 95%
       font-size 0.4rem
-      margin 0.3rem auto 
+      margin 0.3rem auto
       height 1.3rem
-      outline none 
-      border none 
+      outline none
+      border none
       background-color red
       color #ffffff
 

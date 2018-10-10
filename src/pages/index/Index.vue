@@ -9,7 +9,7 @@
       <!--<SmallBanner :smBanner="smBanner"></SmallBanner>-->
       <!--<IndexNav :news="news" :nears="nears" :recoms="recoms"></IndexNav>-->
       <New :news="news" :recoms="recoms"></New>
-      <!--<NavButtom></NavButtom>-->
+      <NavButtom></NavButtom>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ import { getIconlist, getTypelist, getSmBanner, getIndexNav, getIndexbanner } fr
 import IndexGoods from '@/components/indexgoods/IndexGoods'
 import New from '@/components/new/New'
 // import IndexTypes from '@/components/indexTypes/IndexTypes'
-// import NavButtom from '@/components/navbuttom/NavButtom'
+import NavButtom from '@/components/navbuttom/NavButtom'
 // import SmallBanner from '@/components/smallbanner/SmallBanner'
 // import IndexNav from '@/components/indexnav/IndexNav'
 import IndexBanner from '@/components/indexbanner/IndexBanner'
@@ -30,11 +30,11 @@ export default {
     HeaderComp,
     IndexBanner,
     IndexGoods,
-    New
+    New,
     // IndexTypes
     // SmallBanner,
     // IndexNav
-    // NavButtom
+    NavButtom
   },
   data () {
     return {
