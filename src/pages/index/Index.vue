@@ -31,7 +31,7 @@ export default {
     IndexBanner,
     IndexGoods,
     New
-    // IndexTypes,
+    // IndexTypes
     // SmallBanner,
     // IndexNav
     // NavButtom
@@ -87,7 +87,6 @@ export default {
           item.avatar = imgStr + item.avatar
           item.img = imgStr + item.img
         })
-        console.log(this.news)
       }
     })
   }

@@ -2,7 +2,7 @@
   <div class="container">
     <ul>
       <a href="/pages/details/main">
-      <li class="list" v-for="(list,index_news) in news" :key="index_news">
+      <li class="list" v-for="(list, index_news) in news" :key="index_news" @click="details(index_news)">
         <div class="header">
           <img :src="list.avatar" alt="">
           <div class="info">
@@ -56,6 +56,7 @@
 <script>
 // import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
+import globalStore from '../../store/index'
 export default {
   data () {
     return {
@@ -76,10 +77,8 @@ export default {
   methods: {
     details (index) {
       let news = this.news[index]
-      this.$store.dispatch('setNews', news)
-      this.$router.push({
-        path: '/details'
-      })
+      console.log('dispatch news ', news)
+      globalStore.dispatch('setNews', news)
     }
   }
 }

@@ -2,11 +2,15 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import store from './store'
 
 Vue.config.productionTip = false
 App.mpType = 'app'
 
-const app = new Vue(App)
+const app = new Vue({
+  store,
+  components: {App}
+})
 app.$mount()
 // // import router from './router'
 // // import './stylus/reset.styl'
@@ -36,7 +40,8 @@ export default {
   config: {
     pages: [
       '^pages/index/main',
-      'pages/search/main'
+      'pages/search/main',
+      'pages/details/main'
     ],
     window: {
       backgroundTextStyle: 'light',
