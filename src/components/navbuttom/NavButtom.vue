@@ -4,56 +4,16 @@
     <div class="item item2" :class="{icon22: footerIndex === 1, icon2: footerIndex !== 1}" @click="toyutang">鱼塘</div>
     <div class="item item1">
       <div class="outbox">
-        <span class="open" @click="open"></span>
+        <a href="../../pages/sell/main">
+        <span class="open"></span>
+        </a>
       </div>
       <p class="commit">发布</p>
-    </div>
-    <div class="login" v-show="login" ref="login" :class="{'active':active}">
-      <div class="head">
-        <h2 class="guide">闲鱼赚钱指南</h2>
-        <ul class="navbar">
-          <li class="li">
-            <p class="title">卖什么更赚</p>
-            <p class="tip">教你卖什么更赚钱</p>
-          </li>
-          <li class="li">
-            <p class="title">拍照相机</p>
-            <p class="tip">看看家里的东西值多少钱</p>
-          </li>
-          <li class="li">
-            <p class="title">淘宝一键转卖</p>
-            <p class="tip">剁手多了回回血</p>
-          </li>
-        </ul>
-      </div>
-      <div class="content">
-        <div class="type" @click="tosell">
-          <div class="image">
-            <img src="../../assets/images/收纳盒.png" alt="">
-          </div>
-          <p class="explain">卖闲置</p>
-        </div>
-        <div class="type">
-          <div class="image">
-            <img src="../../assets/images/房子.png" alt="">
-          </div>
-          <p class="explain">出租房屋</p>
-        </div>
-        <div class="type">
-          <div class="image">
-            <img src="../../assets/images/头像.png" alt="">
-          </div>
-          <p class="explain">发布服务</p>
-        </div>
-      </div>
-      <div class="closebox">
-        <span class="close" @click="close"></span>
-      </div>
     </div>
     <div class="item item2" :class="{icon44: footerIndex === 3, icon4: footerIndex !== 3}">
       <a href="../../pages/my/main">消息</a>
     </div>
-    <div class="item item2" :class="{icon55: footerIndex === 4, icon5: footerIndex !== 4}" @click="tomy">
+    <div class="item item2" :class="{icon55: footerIndex === 4, icon5: footerIndex !== 4}">
       <a href="../../pages/my/main">我的</a>
     </div>
   </div>
@@ -79,12 +39,6 @@ export default {
     this.footerIndex = this.$store.state.curIndex
   },
   methods: {
-    tosell () {
-      this.$refs.login.style.display = 'none'
-      this.$router.push({
-        path: '/sell'
-      })
-    },
     tohome () {
       this.$store.dispatch('setCurIndex', 0)
       this.$router.push({
@@ -96,42 +50,6 @@ export default {
       this.$router.push({
         path: '/yutang'
       })
-    },
-    tomessage () {
-      if (this.$store.state.isLogin) {
-        this.$store.dispatch('setCurIndex', 3)
-        this.$router.push({
-          path: '/message'
-        })
-      } else {
-        this.$router.push({
-          path: '/login'
-        })
-      }
-    },
-    tomy () {
-      this.$store.dispatch('setCurIndex', 4)
-      this.$router.push({
-        path: '/my'
-      })
-    },
-    open () {
-      if (this.$store.state.isLogin) {
-        const login = this.$refs.login
-        login.style.display = 'block'
-        this.active = false
-      } else {
-        this.$router.push({
-          path: '/login'
-        })
-      }
-    },
-    close () {
-      this.active = true
-      const login = this.$refs.login
-      setTimeout(() => {
-        login.style.display = 'none'
-      }, 500)
     }
   }
 

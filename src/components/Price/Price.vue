@@ -9,10 +9,6 @@
         <label for="">原价</label>
         <input type="number" v-model="oldPrice" placeholder="0.00">
       </div>
-      <div class="inputprice">
-        <label for="">运费</label>
-        <input type="number" v-model="sendPrice" placeholder="0.00" >
-      </div>
     </div>
     <div class="categorybox" @click="tokind">
       <span class="kind">分类</span>
@@ -54,7 +50,7 @@ export default {
 
 <style lang="stylus" scoped>
 @import '../../common/stylus/mixin.styl'
-.pricebox 
+.pricebox
   width 10rem
   .price
     width 100%
@@ -71,7 +67,7 @@ export default {
       align-items center
       justify-content center
       input
-        outline none 
+        outline none
         border none
         padding-left 0.4rem
         box-sizing border-box

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="head">
       <div class="back" @click="goBack">
-        <img src="../assets/images/返回.png" alt="">
+        <img src="../../assets/images/返回.png" alt="">
       </div>
       <div class="title">我发布的</div>
     </div>
@@ -16,9 +16,9 @@
     </div>
     <div class="image-list">
       <div class="list-img" @click="addPic" v-show="hasPhoto">
-        <img src="../assets/images/相机.png" alt="">
+        <img src="../../assets/images/相机.png" alt="">
         <span class="choosephoto">请选择或者拍照上传照片</span>
-        <input ref="file" type="file" hidden accept="image/jpeg,image/jpg,image/png" capture="camera" @change="fileInput">
+        <!--<input ref="file" type="file" hidden accept="image/jpeg,image/jpg,image/png" capture="camera" @change="fileInput">-->
       </div>
       <ul class="list-ul" v-show="!hasPhoto">
         <li class="list-li" v-for="(url, index) in imgUrls" :key="index">
@@ -33,16 +33,10 @@
     <div class="goodinfo">
       <div class="border">
         <div class="topname">
-          <router-link to="/sell/price" tag="div" class="item">
             <span>开个价</span>
-          </router-link>
-          <router-link to="/sell/auction" tag="div" class="item">
-            <span>拍卖</span>
-          </router-link>
-          <div class="item" @click="noprice">不谈钱</div>
         </div>
       </div>
-      <router-view :kind="kind" ref="price"></router-view>
+      <Price></Price>
     </div>
     <div class="footer">
       <button class="fabu" @click="publish">确定发布</button>
@@ -50,7 +44,7 @@
     <div class="category" ref="category">
       <div class="head">
         <div class="back" @click="hidden">
-          <img src="../assets/images/返回.png" alt="">
+          <img src="../../assets/images/返回.png" alt="">
         </div>
         <div class="title">类目</div>
       </div>
@@ -62,11 +56,15 @@
 </template>
 
 <script>
-import util from '../assets/utils/utils.js'
+import util from '../../assets/utils/utils.js'
 import {MessageBox} from 'mint-ui'
 import lrz from 'lrz'
-import {getCategory, ERR_OK} from '../api/data.js'
+import {getCategory} from '../../api/data.js'
+import Price from '@/components/Price/Price'
 export default {
+  components: {
+    Price
+  },
   data () {
     return {
       category: [],
@@ -75,7 +73,6 @@ export default {
       hasPhoto: true,
       imgUrls: [],
       kind: ''
-
     }
   },
   watch: {
@@ -169,8 +166,19 @@ export default {
       this.imgUrls.splice(index, 1)
     },
     addPic () {
-      let file = this.$refs.file
-      file.click()
+      // let that = this
+      console.log('clicked!!')
+      wx.chooseImage({
+        count: 1, // 默认9
+        sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: function (res) {
+          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+          var tempFilePaths = res.tempFilePaths
+          console.log('本地图片的路径:', tempFilePaths)
+          // upload(that, tempFilePaths)
+        }
+      })
     },
     noprice () {
       this.$toast('帖子仅能在鱼塘发布，你附近没有鱼塘，去别的地方转转吧~')
@@ -178,8 +186,9 @@ export default {
   },
   mounted () {
     getCategory().then(res => {
-      if (res.status === ERR_OK) {
+      if (res.statusCode === 200) {
         this.category = res.data.category
+        console.log(this.category)
       }
     })
   }
@@ -187,14 +196,14 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../common/stylus/mixin.styl'
+@import '../../common/stylus/mixin.styl'
 .router-link-active
   border-radius .6rem
   height 1rem
   line-height 1rem
   background-color #ffda44
 .container
-  width 10rem
+  width 7.5rem
   height 100%
   .inputcontainer
     width 100%
@@ -250,7 +259,7 @@ export default {
           height 0.66rem
           border-radius 50%
           display block
-          background url('../assets/images/X.png') no-repeat
+          background url('../../assets/images/X.png') no-repeat
           background-size cover
           position absolute
           top -0.23rem
@@ -264,7 +273,7 @@ export default {
           height 1.3rem
           display block
           border 1px solid #333333
-          background url('../assets/images/加.png') no-repeat
+          background url('../../assets/images/加.png') no-repeat
           background-size 1rem 1rem
           background-position center
 
