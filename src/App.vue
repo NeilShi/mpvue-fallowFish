@@ -5,6 +5,7 @@
       wx.login({
         success: res => {
           console.log('login!', res)
+          this.$store.state.isLogin = true
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           // wx.request({
           //   url: 'http://localhost:9998/wechat/user/login',
@@ -25,8 +26,10 @@
             wx.getUserInfo({
               success: res => {
                 // 可以将 res 发送给后台解码出 unionId
+                this.$store.state.username = res.userInfo.nickName
+                this.$store.state.avatarUrl = res.userInfo.avatarUrl
                 this.$store.state.userInfo = res.userInfo
-                console.log('user info', this.$store.state.userInfo)
+                console.log('res.userInfo', res.userInfo)
 
                 // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
                 // 所以此处加入 callback 以防止这种情况

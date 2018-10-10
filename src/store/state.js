@@ -10,7 +10,7 @@ const state = {
   buynum: 0,
   money: 0,
   likenum: 0,
-  userInfo: {},
+  avatarUrl: '',
   news: '',
   address: {},
   goods: [],

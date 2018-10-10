@@ -8,7 +8,7 @@
             <div class="somedesc">用闲鱼来挣钱~</div>
           </div>
           <div class="useravatar">
-            <img :src="url" alt="" class="avatar">
+            <img :src="avatarUrl" alt="" class="avatar">
           </div>
         </div>
         <div class="count">
@@ -80,7 +80,7 @@ export default {
   },
   mounted () {
     this.isLogin = this.$store.state.isLogin
-    let username = window.localStorage.getItem('username')
+    let username = this.$store.userInfo.nickName
     this.$store.dispatch('setUsername', username)
     this.url = window.localStorage.getItem('useravatar')
   },
@@ -128,7 +128,10 @@ export default {
       'likenum',
       'buynum',
       'money'
-    ])
+    ]),
+    avatarUrl () {
+      return this.$store.state.avatarUrl
+    }
   },
   components: {
     NavButtom
