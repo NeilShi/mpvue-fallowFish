@@ -12,17 +12,19 @@ App.mpType = 'app'
 const app = new Vue(App)
 app.$mount()
 export default {
-  config: {
-    pages: [
-      '^pages/index/main',
-      'pages/search/main',
-      'pages/details/main'
-    ],
-    window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: '第一个小程序',
-      navigationBarTextStyle: 'black'
-    }
-  }
+  // mpvue-loader v1.1.1 之后config无效，直接写app.json
+  // config: {
+  //   pages: [
+  //     '^pages/index/main',
+  //     'pages/sell/main',
+  //     'pages/search/main',
+  //     'pages/details/main'
+  //   ],
+  //   window: {
+  //     backgroundTextStyle: 'light',
+  //     navigationBarBackgroundColor: '#fff',
+  //     navigationBarTitleText: '第一个小程序',
+  //     navigationBarTextStyle: 'black'
+  //   }
+  // }
 }
