@@ -1,7 +1,11 @@
 <template>
   <div class="footer">
-    <div class="item item2" :class="{icon11: footerIndex ===0,icon1: footerIndex !== 0}" @click="tohome">闲鱼</div>
-    <div class="item item2" :class="{icon22: footerIndex === 1, icon2: footerIndex !== 1}" @click="toyutang">鱼塘</div>
+    <div class="item item2" :class="{icon11: footerIndex ===0,icon1: footerIndex !== 0}">
+      <a href="../../pages/index/main">闲鱼</a>
+    </div>
+    <div class="item item2" :class="{icon22: footerIndex === 1, icon2: footerIndex !== 1}">
+      <a href="../../pages/index/main">鱼塘</a>
+    </div>
     <div class="item item1">
       <div class="outbox">
         <a href="../../pages/sell/main">
@@ -39,18 +43,6 @@ export default {
     this.footerIndex = this.$store.state.curIndex
   },
   methods: {
-    tohome () {
-      this.$store.dispatch('setCurIndex', 0)
-      this.$router.push({
-        path: '/'
-      })
-    },
-    toyutang () {
-      this.$store.dispatch('setCurIndex', 1)
-      this.$router.push({
-        path: '/yutang'
-      })
-    }
   }
 
 }

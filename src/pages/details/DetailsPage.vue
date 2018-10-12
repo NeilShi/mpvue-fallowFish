@@ -43,23 +43,28 @@
         <img src="../../assets/images/赞1.png" alt="" v-else>
         <span class="star">点赞</span>
       </div>
-      <div class="buy" @click="buy">我想要</div>
+      <div class="buy" @click="showNews">我想要</div>
     </div>
   </div>
 </template>
 
 <script>
-  import DetailsInfo from '@/components/details/DetailsInfo'
+  // import DetailsInfo from '@/components/details/DetailsInfo'
   // import globalStore from '../../store/index'
   export default {
-    components: {
-      DetailsInfo
-    },
+    // components: {
+    //   DetailsInfo
+    // },
     // data () {
     //   return {
     //     news: {}
     //   }
     // },
+    methods: {
+      showNews () {
+        console.log(this.news)
+      }
+    },
     computed: {
       news () {
         return this.$store.state.news

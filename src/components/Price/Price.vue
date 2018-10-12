@@ -37,8 +37,7 @@ export default {
   data () {
     return {
       oldPrice: '',
-      newPrice: '',
-      sendPrice: ''
+      newPrice: ''
     }
   },
   created () {

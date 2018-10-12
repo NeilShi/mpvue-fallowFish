@@ -1,7 +1,10 @@
 {
   "pages": [
     "pages/index/main",
-    "pages/sell/main"
+    "pages/sell/main",
+    "pages/my/main",
+    "pages/search/main",
+    "pages/details/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

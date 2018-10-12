@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import store from './store'
+import mpvueToastRegistry from 'mptoast/registry'
+
+mpvueToastRegistry(Vue)
 
 // 把store挂载到全局
 Vue.prototype.$store = store

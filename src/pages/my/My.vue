@@ -82,7 +82,6 @@ export default {
     this.isLogin = this.$store.state.isLogin
     let username = this.$store.userInfo.nickName
     this.$store.dispatch('setUsername', username)
-    this.url = window.localStorage.getItem('useravatar')
   },
   methods: {
     tologin () {
@@ -91,7 +90,6 @@ export default {
       })
     },
     logout () {
-      window.localStorage.clear()
       this.$store.dispatch('noLogin')
       this.$router.push({
         path: '/my'

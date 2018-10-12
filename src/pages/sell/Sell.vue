@@ -35,11 +35,12 @@
             <span>开个价</span>
         </div>
       </div>
-      <Price :category="category"></Price>
+      <Price ref="price"></Price>
     </div>
-    <!--<div class="footer">-->
-      <!--<button class="fabu" @click="publish">确定发布</button>-->
-    <!--</div>-->
+    <div class="footer">
+      <button class="fabu" @click="publish">确定发布</button>
+      <mptoast />
+    </div>
     <div class="category" ref="category">
     <div class="head">
       <div class="back" @click="hidden">
@@ -55,14 +56,15 @@
 </template>
 
 <script>
-// import util from '../../assets/utils/utils.js'
-// import {MessageBox} from 'mint-ui'
+import util from '../../assets/utils/utils.js'
 // import lrz from 'lrz'
 // import {getCategory} from '../../api/data.js'
+import mptoast from 'mptoast'
 import Price from '@/components/Price/Price'
 export default {
   components: {
-    Price
+    Price,
+    mptoast
   },
   data () {
     return {
@@ -70,64 +72,54 @@ export default {
       title: '',
       desc: '',
       hasPhoto: true,
-      imgUrls: [],
-      kind: ''
+      imgUrls: []
     }
   },
   watch: {
     imgUrls: 'showAddpic'
   },
   methods: {
-    // publish () {
-    //   let oldPrice = this.$refs.price.oldPrice
-    //   let newPrice = this.$refs.price.newPrice
-    //   let sendPrice = this.$refs.price.sendPrice
-    //   if (this.title === '') {
-    //     this.$toast('请输入发布的标题')
-    //     return
-    //   }
-    //   if (this.desc === '') {
-    //     this.$toast('描述一下宝贝吧')
-    //     return
-    //   }
-    //   if (this.imgUrls === '') {
-    //     MessageBox.alert('上传几张宝贝图片吧~~如果无法上传，请确定是否开启拍照权限，如果仍无效果，请移步其他浏览器')
-    //     return
-    //   }
-    //   if (newPrice === '') {
-    //     this.$toast('请输入价格')
-    //     return
-    //   }
-    //   if (oldPrice === '') {
-    //     this.$toast('请输入原价')
-    //     return
-    //   }
-    //   if (sendPrice === '') {
-    //     this.$toast('邮费不能为空')
-    //     return
-    //   }
-    //   if (this.kind === '') {
-    //     this.$toast('请选择商品类型')
-    //     return
-    //   }
-    //   MessageBox.alert('发布成功，去看看吧！').then(action => {
-    //     let obj = {}
-    //     obj.title = this.title
-    //     obj.desc = this.desc
-    //     obj.imgUrls = this.imgUrls
-    //     obj.newPrice = newPrice
-    //     obj.oldPrice = oldPrice
-    //     obj.sendPrice = sendPrice
-    //     obj.del = true
-    //     obj.kind = this.kind
-    //     obj.time = util.formatDate.format(new Date(), 'yyyy-MM-dd hh:mm')
-    //     this.$store.dispatch('setFabunum')
-    //     this.$store.dispatch('setFabuinfo', obj)
-    //     this.$router.push('/my')
-    //     this.$store.dispatch('setCurIndex', 4)
-    //     console.log(obj)
-    //   })
-    // },
+    publish () {
+      // console.log('ref test', this.$refs.price.oldPrice)
+      let oldPrice = this.$refs.price.oldPrice
+      let newPrice = this.$refs.price.newPrice
+      if (this.title === '') {
+        console.log('test mptoast')
+        this.$mptoast('请输入发布的标题')
+        return
+      }
+      if (this.desc === '') {
+        this.$mptoast('描述一下宝贝吧')
+        return
+      }
+      if (this.imgUrls === '') {
+        this.$mptoast('上传几张宝贝图片吧~~如果无法上传，请确定是否开启拍照权限')
+        return
+      }
+      if (newPrice === '') {
+        this.$mptoast('请输入价格')
+        return
+      }
+      if (oldPrice === '') {
+        this.$mptoast('请输入原价')
+        return
+      }
+      let obj = {}
+      obj.title = this.title
+      obj.desc = this.desc
+      obj.imgUrls = this.imgUrls
+      obj.newPrice = newPrice
+      obj.oldPrice = oldPrice
+      obj.del = true
+      obj.time = util.formatDate.format(new Date(), 'yyyy-MM-dd hh:mm')
+      this.$store.dispatch('setFabunum')
+      this.$store.dispatch('setFabuinfo', obj)
+      this.$store.dispatch('setCurIndex', 4)
+      console.log(this.$store.state)
+      wx.navigateBack({
+        delta: 2
+      })
+    },
     // selectItem (item) {
     //   this.kind = item.name
     //   this.hidden()
@@ -288,8 +280,8 @@ export default {
     width 100%
     box-sizing border-box
     padding .2rem .2rem
-    position fixed
-    bottom 0
+    /*position fixed*/
+    /*bottom 0*/
     height 1.8rem
     display flex
     align-items center
