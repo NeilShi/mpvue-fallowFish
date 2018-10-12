@@ -10,21 +10,24 @@
         <input type="number" v-model="oldPrice" placeholder="0.00">
       </div>
     </div>
-    <div class="categorybox" @click="tokind">
-      <span class="kind">分类</span>
-      <span class="choose">{{kind}}</span>
-    </div>
-    <div class="bottom">
-      <p class="info">把该宝贝同步到</p>
-      <div class="yutang">
-        <span class="big">鱼塘</span>
-        <span class="little">:加入鱼塘，更多曝光</span>
-      </div>
-    </div>
+    <!--<div class="categorybox" @click="showPicker">-->
+      <!--<span class="kind">分类</span>-->
+      <!--<mpvue-picker ref="mpvuePicker" :pickerValueArray="test" :mode="selector" @pickerConfirm="pickerConfirm"></mpvue-picker>-->
+      <!--<span class="choose">{{kind}}</span>-->
+    <!--</div>-->
+    <!--<div class="bottom">-->
+      <!--<p class="info">把该宝贝同步到</p>-->
+      <!--<div class="yutang">-->
+        <!--<span class="big">鱼塘</span>-->
+        <!--<span class="little">:加入鱼塘，更多曝光</span>-->
+      <!--</div>-->
+    <!--</div>-->
   </div>
 </template>
 
 <script>
+// import mpvuePicker from 'mpvue-picker'
+// import {getCategory} from '../../api/data.js'
 export default {
   props: {
     kind: {
@@ -38,13 +41,10 @@ export default {
       sendPrice: ''
     }
   },
-  methods: {
-    tokind () {
-      let category = document.querySelector('.category')
-      console.log(category)
-      category.style.display = 'block'
-    }
-  }
+  created () {
+    console.log('price is created')
+  },
+  methods: {}
 }
 </script>
 

@@ -15,12 +15,11 @@
       </div>
     </div>
     <div class="image-list">
-      <div class="list-img" @click="addPic" v-show="hasPhoto">
+      <div class="list-img" @click="addPic" v-if="hasPhoto">
         <img src="../../assets/images/相机.png" alt="">
         <span class="choosephoto">请选择或者拍照上传照片</span>
-        <!--<input ref="file" type="file" hidden accept="image/jpeg,image/jpg,image/png" capture="camera" @change="fileInput">-->
       </div>
-      <ul class="list-ul" v-show="!hasPhoto">
+      <ul class="list-ul" v-if="!hasPhoto">
         <li class="list-li" v-for="(url, index) in imgUrls" :key="index">
           <img :src="url" alt="">
           <span class="cancelimg" @click="delImage(index)"></span>
@@ -36,30 +35,30 @@
             <span>开个价</span>
         </div>
       </div>
-      <Price></Price>
+      <Price :category="category"></Price>
     </div>
-    <div class="footer">
-      <button class="fabu" @click="publish">确定发布</button>
-    </div>
+    <!--<div class="footer">-->
+      <!--<button class="fabu" @click="publish">确定发布</button>-->
+    <!--</div>-->
     <div class="category" ref="category">
-      <div class="head">
-        <div class="back" @click="hidden">
-          <img src="../../assets/images/返回.png" alt="">
-        </div>
-        <div class="title">类目</div>
+    <div class="head">
+      <div class="back" @click="hidden">
+        <img src="../../assets/images/返回.png" alt="">
       </div>
-      <div class="wrapper">
-        <div class="item border-1px" v-for= "(item,index) in category" :key="index" @click="selectItem(item)">{{item.name}}</div>
-      </div>
+      <div class="title">类目</div>
     </div>
+    <div class="wrapper">
+      <div class="item border-1px" v-for= "(item,index) in category" :key="index" @click="selectItem(item)">{{item.name}}</div>
+    </div>
+  </div>
   </div>
 </template>
 
 <script>
-import util from '../../assets/utils/utils.js'
-import {MessageBox} from 'mint-ui'
-import lrz from 'lrz'
-import {getCategory} from '../../api/data.js'
+// import util from '../../assets/utils/utils.js'
+// import {MessageBox} from 'mint-ui'
+// import lrz from 'lrz'
+// import {getCategory} from '../../api/data.js'
 import Price from '@/components/Price/Price'
 export default {
   components: {
@@ -79,60 +78,60 @@ export default {
     imgUrls: 'showAddpic'
   },
   methods: {
-    publish () {
-      let oldPrice = this.$refs.price.oldPrice
-      let newPrice = this.$refs.price.newPrice
-      let sendPrice = this.$refs.price.sendPrice
-      if (this.title === '') {
-        this.$toast('请输入发布的标题')
-        return
-      }
-      if (this.desc === '') {
-        this.$toast('描述一下宝贝吧')
-        return
-      }
-      if (this.imgUrls === '') {
-        MessageBox.alert('上传几张宝贝图片吧~~如果无法上传，请确定是否开启拍照权限，如果仍无效果，请移步其他浏览器')
-        return
-      }
-      if (newPrice === '') {
-        this.$toast('请输入价格')
-        return
-      }
-      if (oldPrice === '') {
-        this.$toast('请输入原价')
-        return
-      }
-      if (sendPrice === '') {
-        this.$toast('邮费不能为空')
-        return
-      }
-      if (this.kind === '') {
-        this.$toast('请选择商品类型')
-        return
-      }
-      MessageBox.alert('发布成功，去看看吧！').then(action => {
-        let obj = {}
-        obj.title = this.title
-        obj.desc = this.desc
-        obj.imgUrls = this.imgUrls
-        obj.newPrice = newPrice
-        obj.oldPrice = oldPrice
-        obj.sendPrice = sendPrice
-        obj.del = true
-        obj.kind = this.kind
-        obj.time = util.formatDate.format(new Date(), 'yyyy-MM-dd hh:mm')
-        this.$store.dispatch('setFabunum')
-        this.$store.dispatch('setFabuinfo', obj)
-        this.$router.push('/my')
-        this.$store.dispatch('setCurIndex', 4)
-        console.log(obj)
-      })
-    },
-    selectItem (item) {
-      this.kind = item.name
-      this.hidden()
-    },
+    // publish () {
+    //   let oldPrice = this.$refs.price.oldPrice
+    //   let newPrice = this.$refs.price.newPrice
+    //   let sendPrice = this.$refs.price.sendPrice
+    //   if (this.title === '') {
+    //     this.$toast('请输入发布的标题')
+    //     return
+    //   }
+    //   if (this.desc === '') {
+    //     this.$toast('描述一下宝贝吧')
+    //     return
+    //   }
+    //   if (this.imgUrls === '') {
+    //     MessageBox.alert('上传几张宝贝图片吧~~如果无法上传，请确定是否开启拍照权限，如果仍无效果，请移步其他浏览器')
+    //     return
+    //   }
+    //   if (newPrice === '') {
+    //     this.$toast('请输入价格')
+    //     return
+    //   }
+    //   if (oldPrice === '') {
+    //     this.$toast('请输入原价')
+    //     return
+    //   }
+    //   if (sendPrice === '') {
+    //     this.$toast('邮费不能为空')
+    //     return
+    //   }
+    //   if (this.kind === '') {
+    //     this.$toast('请选择商品类型')
+    //     return
+    //   }
+    //   MessageBox.alert('发布成功，去看看吧！').then(action => {
+    //     let obj = {}
+    //     obj.title = this.title
+    //     obj.desc = this.desc
+    //     obj.imgUrls = this.imgUrls
+    //     obj.newPrice = newPrice
+    //     obj.oldPrice = oldPrice
+    //     obj.sendPrice = sendPrice
+    //     obj.del = true
+    //     obj.kind = this.kind
+    //     obj.time = util.formatDate.format(new Date(), 'yyyy-MM-dd hh:mm')
+    //     this.$store.dispatch('setFabunum')
+    //     this.$store.dispatch('setFabuinfo', obj)
+    //     this.$router.push('/my')
+    //     this.$store.dispatch('setCurIndex', 4)
+    //     console.log(obj)
+    //   })
+    // },
+    // selectItem (item) {
+    //   this.kind = item.name
+    //   this.hidden()
+    // },
     showAddpic () {
       if (this.imgUrls.length >= 1) {
         this.hasPhoto = false
@@ -141,57 +140,41 @@ export default {
       }
     },
     goBack () {
-      this.$router.back(-1)
-    },
-    hidden () {
-      let category = this.$refs.category
-      category.style.display = 'none'
-    },
-    fileInput (e) {
-      let files = e.target.files
-      if (!files.length) return
-      this.createImage(files, e)
-    },
-    createImage (files, e) {
-      lrz(files[0], { width: 480 }).then(rst => {
-        this.imgUrls.push(rst.base64)
-        console.log(this.imgUrls)
-      }).catch(err => {
-        console.log(err)
-      }).always(() => {
-        e.tartget.value = null
+      wx.navigateBack({
+        delta: 2
       })
     },
     delImage (index) {
       this.imgUrls.splice(index, 1)
     },
     addPic () {
-      // let that = this
+      let that = this
       console.log('clicked!!')
       wx.chooseImage({
-        count: 1, // 默认9
+        count: 9, // 默认9
         sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: function (res) {
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-          var tempFilePaths = res.tempFilePaths
-          console.log('本地图片的路径:', tempFilePaths)
+          that.imgUrls = that.imgUrls.concat(res.tempFilePaths)
+          // console.log('that:', that)
           // upload(that, tempFilePaths)
         }
       })
-    },
-    noprice () {
-      this.$toast('帖子仅能在鱼塘发布，你附近没有鱼塘，去别的地方转转吧~')
     }
-  },
-  mounted () {
-    getCategory().then(res => {
-      if (res.statusCode === 200) {
-        this.category = res.data.category
-        console.log(this.category)
-      }
-    })
+  //   noprice () {
+  //     this.$toast('帖子仅能在鱼塘发布，你附近没有鱼塘，去别的地方转转吧~')
+  //   }
   }
+  // mounted () {
+  //   getCategory().then(res => {
+  //     if (res.statusCode === 200) {
+  //       res.data.category.forEach(item => {
+  //         this.category.push(item.name)
+  //       })
+  //     }
+  //   })
+  // }
 }
 </script>
 
